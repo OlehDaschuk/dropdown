@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+:root {
+  --aside-bg-color: #242935;
+  --accordion-transition: transform 0.35s ease-in;
+}
+
+body {
+  color: #242935;
+}
+
+img {
+  user-select: none;
+  margin: 0 auto;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+
+  @apply flex-col sm:flex-row;
+}
+
+aside {
+  color: aliceblue;
+  padding: 2rem;
+  width: 100%;
+  border-right: 2px solid black;
+
+  @apply sm:max-w-xs;
+}
+
+main {
+  width: 100%;
+  padding: 3rem;
+}
+
+h3 {
+  @apply text-2xl mb-3 font-bold capitalize;
+}
+
+h4 {
+  @apply text-xl mb-2 font-bold capitalize;
+}
+
+.subheading {
+  @apply text-sm text-gray-500 uppercase;
+}
+
+/* Accordion styles */
+._accordion {
+  @apply mb-6;
+}
+
+._arrow {
+  display: inline-block;
+  transform: rotate(0);
+  transition: var(--accordion-transition);
+}
+._arrow._show {
+  transform: rotate(90deg);
+}
+
+._body_wrapper {
+  height: 0;
+  overflow-y: hidden;
+}
+._body_wrapper._show {
+  height: 100%;
+  transition: var(--accordion-transition);
+}
+._body_wrapper._show > ._body {
+  transform: translate(0, 0);
+}
+
+._body {
+  transform: translate(0, -100%);
+  transition: var(--accordion-transition);
+}
+
+/* Progress bar styles */
+.progress-bar {
+  height: 0.75rem;
+  width: 100%;
+  max-width: 14rem;
+  border: 1px solid black;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+
+  @apply bg-slate-200;
+}
+.progress-bar div {
+  height: 100%;
+  width: calc(calc(100% / 5) * var(--progress-value));
+  background-color: #333;
+}
+
+aside .progress-bar {
+  background-color: #333;
+}
+aside .progress-bar div {
+  @apply bg-slate-200;
+}
